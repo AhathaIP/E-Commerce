@@ -1,0 +1,15 @@
+﻿@model PaymentGateway.Domain.Payment
+
+<h2>Create Payment</h2>
+
+<form method="post" asp-action="Create">
+    <div class="form-group">
+        <label for="orderId">Order ID</label>
+        <input type="text" class="form-control" id="orderId" name="orderId" value="@Model?.OrderId" required />
+    </div>
+    <div class="form-group">
+        <label for="amount">Amount</label>
+        <input type="number" class="form-control" id="amount" name="amount" value="@Model?.Amount" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Payment</button>
+</form>

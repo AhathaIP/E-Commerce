@@ -4,6 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using Ecom.Repository.Models;
 using Ecom.Business.Services;
 using Ecom.Repository;
+using PaymentGateway.Data;
+using PaymentGateway.Data;
+using PaymentGateway.Data;
+using PaymentGateway.Services;
+using PaymentGateway.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
+using PaymentGateway.Data.Interfaces;
+using PaymentGateway.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,7 +55,11 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IProductService, ProductService>(); // Add Product Service
+builder.Services.AddScoped<IProductService, ProductService>();
+// Add Payment code
+
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 
 builder.Services.AddControllersWithViews();
 

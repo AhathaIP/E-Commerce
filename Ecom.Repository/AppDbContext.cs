@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Ecom.Repository.Models; // Added this using directive
+using Microsoft.EntityFrameworkCore;
+using PaymentGateway.Domain;
 
 namespace Ecom.Repository
 {
@@ -17,5 +19,13 @@ namespace Ecom.Repository
         }
         // Add more DbSets here if needed in the future
         public DbSet<Product> Products { get; set; }
+
+        public DbSet<Payment> Payments { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Payment>().HasKey(p => p.PaymentId);
+            modelBuilder.Entity<Payment>().Property(p => p.Amount).HasColumnType("decimal(18,2)");
+        }
     }
 }
